@@ -8,6 +8,9 @@ Online judge system for KPSC
 
 
 ## 실행 방법
+1. 아래 명령어를 리포지토리 최상위 폴더에서 실행
 ```
 > docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
 ```
+
+2. 웹 브라우저로 localhost에 접속(80포트)
