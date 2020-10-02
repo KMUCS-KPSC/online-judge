@@ -10,6 +10,7 @@ import Contest from './pages/contest';
 import Rank from './pages/rank';
 import Discuss from './pages/discuss';
 import NavBar from './components/navBar';
+import Footer from './components/footer';
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -20,17 +21,17 @@ function App() {
         <NavBar/>
         <Switch>
           <Route path='/problem'
-                 render={() => <div><Problem/></div>}/>
+                 render={() => <div><Problem/><Footer/></div>}/>
           <Route path='/problems'
-                 render={() => <div><Problems/></div>}/>
+                 render={() => <div><Problems/><Footer/></div>}/>
           <Route path='/contest'
-                 render={() => <div><Contest/></div>}/>
+                 render={() => <div><Contest/><Footer/></div>}/>
           <Route path='/rank'
-                 render={() => <div><Rank/></div>}/>
+                 render={() => <div><Rank/><Footer/></div>}/>
           <Route path='/discuss'
-                 render={() => <div><Discuss/></div>}/>
+                 render={() => <div><Discuss/><Footer/></div>}/>
           <Route path='/'
-                 render={() => <div><Landing/></div>}/>
+                 render={() => <div><Landing/><Footer/></div>}/>
         </Switch>
       </Router>
   );
