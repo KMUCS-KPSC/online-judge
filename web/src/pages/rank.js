@@ -8,7 +8,10 @@ class Rank extends Component {
         super(props);
 
         const rows = [
-            ['1', 'Taste Why Frame', '맞았는뒈 왜 틀뤼쥐', 'Inf', 'Inf', 'Inf', 'Inf'],
+            {
+                href: '#',
+                row: ['1', 'Taste Why Frame', '맞았는뒈 왜 틀뤼쥐', 'Inf', 'Inf', 'Inf', 'Inf'],
+            },
         ];
         
         this.state = {
@@ -28,9 +31,11 @@ class Rank extends Component {
     render() {
         return (
             <Container>
-                <Row className="justify-content-md">
-                    <p>Rank</p>
-                    <BasicTable headers={this.state.headers} rows={this.state.users} />
+                <Row xs>
+                    <div>
+                        <p>Rank</p>
+                        <BasicTable headers={this.state.headers} rows={this.state.users} />
+                    </div>
                 </Row>
             </Container>
         );

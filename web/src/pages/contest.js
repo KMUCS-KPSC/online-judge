@@ -8,8 +8,14 @@ class Contest extends Component {
         super(props);
 
         const rows = [
-            ['2029 ICPC World Final', 'Taste Why Frame', '인공지능', '2029년 8월 1일', '2029년 8월 2일', '종료'],
-            ['2131 우리은하 대학생 프로그래밍 경진대회', 'Taste Why Frame', '인공지능', '2131년 8월 1일', '2131년 8월 2일', '종료'],
+            {
+                href: '#',
+                row: ['2029 ICPC World Final', 'Taste Why Frame', '인공지능', '2029년 8월 1일', '2029년 8월 2일', '종료'],
+            },
+            {
+                href: '#',
+                row: ['2131 우리은하 대학생 프로그래밍 경진대회', 'Taste Why Frame', '인공지능', '2131년 8월 1일', '2131년 8월 2일', '종료'],
+            },
         ];
         
         this.state = {
@@ -28,9 +34,11 @@ class Contest extends Component {
     render() {
         return (
             <Container>
-                <Row className="justify-content-md">
-                    <p>Contest</p>
-                    <BasicTable headers={this.state.headers} rows={this.state.contests} />
+                <Row xs>
+                    <div>
+                        <p>Contest</p>
+                        <BasicTable headers={this.state.headers} rows={this.state.contests} />
+                    </div>
                 </Row>
             </Container>
         );

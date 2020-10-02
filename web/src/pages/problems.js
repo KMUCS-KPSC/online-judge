@@ -9,8 +9,14 @@ class Problems extends Component {
         super(props);
 
         const rows = [
-            ['0001', '이거 보여주려고 어그로 끌었다', '최고 난이도', '00.00%'],
-            ['0002', 'ICPC World Final', '최고 난이도', '00.00%'],
+            {
+                href: '#',
+                row: ['0001', <a href='/problem/0001'>{'이거 보여주려고 어그로 끌었다'}</a>, '최고 난이도', '00.00%'],
+            },
+            {
+                href: '#',
+                row: ['0002', <a href='/problem/0001'>{'ICPC World Final'}</a>, '최고 난이도', '00.00%'],
+            },
         ];
         
         this.state = {
@@ -27,9 +33,11 @@ class Problems extends Component {
     render() {
         return (
             <Container>
-                <Row className="justify-content-md">
-                    <p>Problems</p>
-                    <BasicTable headers={this.state.headers} rows={this.state.problems} />
+                <Row xs>
+                    <div>
+                        <p>Problems</p>
+                        <BasicTable headers={this.state.headers} rows={this.state.problems} />
+                    </div>
                 </Row>
             </Container>
         );

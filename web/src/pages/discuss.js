@@ -10,8 +10,10 @@ class Discuss extends Component {
     render() {
         return (
             <Container>
-                <Row className="justify-content-md">
-                    <p>Discuss</p>
+                <Row xs>
+                    <div>
+                        <p>Discuss</p>
+                    </div>
                 </Row>
             </Container>
         );

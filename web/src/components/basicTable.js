@@ -18,8 +18,8 @@ class BasicTable extends Component {
         const rows = [];
         for(let i = 0; i < this.props.rows.length; ++i){
             const row = [];
-            for(let j = 0; j < this.props.rows[i].length; ++j)
-                row.push(<td>{this.props.rows[i][j]}</td>);
+            for(let j = 0; j < this.props.rows[i].row.length; ++j)
+                row.push(<td>{this.props.rows[i].row[j]}</td>);
             rows.push(<tr>{row}</tr>);
         }
         return rows;

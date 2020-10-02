@@ -4,6 +4,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import Landing from './pages/landing';
+import Problem from './pages/problem';
 import Problems from './pages/problems';
 import Contest from './pages/contest';
 import Rank from './pages/rank';
@@ -18,6 +19,8 @@ function App() {
       <Router>
         <NavBar/>
         <Switch>
+          <Route path='/problem'
+                 render={() => <div><Problem/></div>}/>
           <Route path='/problems'
                  render={() => <div><Problems/></div>}/>
           <Route path='/contest'
