@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
 
 class Discuss extends Component {
     constructor(props) {
@@ -7,7 +9,11 @@ class Discuss extends Component {
 
     render() {
         return (
-            <p>Discuss</p>
+            <Container>
+                <Row className="justify-content-md">
+                    <p>Discuss</p>
+                </Row>
+            </Container>
         );
     }
 }
