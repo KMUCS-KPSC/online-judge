@@ -16,18 +16,20 @@ class NavBar extends Component {
     render() {
         return (
             <Navbar bg="light" expand="lg">
-                <Navbar.Brand href="#home">KPSC Online Judge</Navbar.Brand>
+                <Navbar.Brand href="/">KPSC Online Judge</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#link">Link</Nav.Link>
-                        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                        <Nav.Link href="/problems">문제 목록</Nav.Link>
+                        <Nav.Link href="/contest">대회</Nav.Link>
+                        <Nav.Link href="/rank">랭킹</Nav.Link>
+                        <Nav.Link href="/discuss">토론</Nav.Link>
+                        <NavDropdown title="메뉴" id="basic-nav-dropdown">
+                            <NavDropdown.Item href="#action/3.1">로그아웃</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.2">내정보</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.3">기부하기</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.4">무조건 기부하기</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     <Form inline>
