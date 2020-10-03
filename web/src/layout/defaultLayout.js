@@ -1,10 +1,5 @@
 import React, {Component} from 'react';
 import Footer from '../components/footer'
-import {
-    Navbar,
-    Container,
-    NavbarBrand,
-} from 'react-bootstrap';
 
 
 class DefaultLayout extends Component {
