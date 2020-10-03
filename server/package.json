@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apollo-server": "^2.14.2"
+    "apollo-server": "^2.14.2",
+    "sequelize": "^6.3.5",
+    "sqlite3": "^5.0.0"
   }
 }
