@@ -20,18 +20,12 @@ function App() {
       <Router>
         <NavBar/>
         <Switch>
-          <Route path='/problem'
-                 render={() => <div><Problem/><Footer/></div>}/>
-          <Route path='/problems'
-                 render={() => <div><Problems/><Footer/></div>}/>
-          <Route path='/contest'
-                 render={() => <div><Contest/><Footer/></div>}/>
-          <Route path='/rank'
-                 render={() => <div><Rank/><Footer/></div>}/>
-          <Route path='/discuss'
-                 render={() => <div><Discuss/><Footer/></div>}/>
-          <Route path='/'
-                 render={() => <div><Landing/><Footer/></div>}/>
+          <Route path='/problem' component={Problem} />
+          <Route path='/problems' component={Problems} />
+          <Route path='/contest' component={Contest} />
+          <Route path='/rank' component={Rank} />
+          <Route path='/discuss' component={Discuss} />
+          <Route path='/' component={Landing} />
         </Switch>
       </Router>
   );

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import DefaultLayout from '../layout/defaultLayout'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
@@ -9,13 +10,15 @@ class Discuss extends Component {
 
     render() {
         return (
-            <Container>
-                <Row xs>
-                    <div>
-                        <p>Discuss</p>
-                    </div>
-                </Row>
-            </Container>
+            <DefaultLayout>
+                <Container>
+                    <Row xs>
+                        <div>
+                            <p>Discuss</p>
+                        </div>
+                    </Row>
+                </Container>
+            </DefaultLayout>
         );
     }
 }

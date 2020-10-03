@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import DefaultLayout from '../layout/defaultLayout'
 
 class Landing extends Component {
     constructor(props) {
@@ -7,7 +8,9 @@ class Landing extends Component {
 
     render() {
         return (
-            <p>Hello, world!</p>
+            <DefaultLayout>
+                <p>Hello, world!</p>
+            </DefaultLayout>
         );
     }
 }

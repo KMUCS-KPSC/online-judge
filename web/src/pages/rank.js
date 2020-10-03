@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import DefaultLayout from '../layout/defaultLayout'
 import BasicTable from '../components/basicTable'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -30,14 +31,16 @@ class Rank extends Component {
 
     render() {
         return (
-            <Container>
-                <Row xs>
-                    <div>
-                        <p>Rank</p>
-                        <BasicTable headers={this.state.headers} rows={this.state.users} />
-                    </div>
-                </Row>
-            </Container>
+            <DefaultLayout>
+                <Container>
+                    <Row xs>
+                        <div>
+                            <p>Rank</p>
+                            <BasicTable headers={this.state.headers} rows={this.state.users} />
+                        </div>
+                    </Row>
+                </Container>
+            </DefaultLayout>
         );
     }
 }

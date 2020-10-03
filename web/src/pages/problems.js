@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import DefaultLayout from '../layout/defaultLayout'
 import BasicTable from '../components/basicTable'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -32,14 +33,16 @@ class Problems extends Component {
 
     render() {
         return (
-            <Container>
-                <Row xs>
-                    <div>
-                        <p>Problems</p>
-                        <BasicTable headers={this.state.headers} rows={this.state.problems} />
-                    </div>
-                </Row>
-            </Container>
+            <DefaultLayout>
+                <Container>
+                    <Row xs>
+                        <div>
+                            <p>Problems</p>
+                            <BasicTable headers={this.state.headers} rows={this.state.problems} />
+                        </div>
+                    </Row>
+                </Container>
+            </DefaultLayout>
         );
     }
 }
