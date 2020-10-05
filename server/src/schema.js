@@ -8,9 +8,19 @@ const typeDefs = gql`
         ac: Int!,
         wa: Int!,
     }
+    type Contest {
+        id: Int!,
+        name: String!,
+        first: String!,
+        second: String!,
+        start: String!,
+        end: String!,
+        status: String!,
+    }
     type Query {
-        helloWorld: Boolean!
-        getProblems: [Problem]!
+        helloWorld: Boolean!,
+        getProblems: [Problem]!,
+        getContests: [Contest]!,
     }
 `;
 

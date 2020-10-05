@@ -32,10 +32,31 @@ const createStore = (force=false) => {
         modelName: 'Problems',
     });
 
+    class Contests extends Model {}
+
+    Contests.init({
+        id: {
+            type: Sequelize.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        name: Sequelize.TEXT,
+        first: Sequelize.TEXT,
+        second: Sequelize.TEXT,
+        start: Sequelize.DATE,
+        end: Sequelize.DATE,
+        status: Sequelize.TEXT,
+    },
+    {
+        sequelize,
+        modelName: 'Contests',
+    });
+
     sequelize.sync({force: force});
 
     return {
         Problems,
+        Contests,
         sequelize,
     };
 };

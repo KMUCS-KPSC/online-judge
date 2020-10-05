@@ -6,6 +6,7 @@ const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
 
 const {ProblemsAPI} = require('./dataSources/problemsAPI');
+const {ContestsAPI} = require('./dataSources/contestsAPI');
 
 const store = createStore(true);
 
@@ -18,6 +19,7 @@ const server = new ApolloServer({
     resolvers,
     dataSources: () => ({
         problemsAPI: new ProblemsAPI(store),
+        contestsAPI: new ContestsAPI(store),
     }),
     context
 });

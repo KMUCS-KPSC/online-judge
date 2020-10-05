@@ -6,7 +6,7 @@ import {
 import Landing from './pages/landing';
 import Problem from './pages/problem';
 import Problems from './pages/problems';
-import Contest from './pages/contest';
+import Contests from './pages/contests';
 import Rank from './pages/rank';
 import Discuss from './pages/discuss';
 import NavBar from './components/navBar';
@@ -22,7 +22,7 @@ function App() {
         <Switch>
           <Route path='/problem' component={Problem} />
           <Route path='/problems' component={Problems} />
-          <Route path='/contest' component={Contest} />
+          <Route path='/contests' component={Contests} />
           <Route path='/rank' component={Rank} />
           <Route path='/discuss' component={Discuss} />
           <Route path='/' component={Landing} />
