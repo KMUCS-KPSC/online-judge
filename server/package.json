@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "fix-js": "eslint-auto-fix"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +14,12 @@
     "apollo-server": "^2.14.2",
     "sequelize": "^6.3.5",
     "sqlite3": "^5.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.0",
+    "eslint-auto-fix": "^1.0.3",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.2"
   }
 }

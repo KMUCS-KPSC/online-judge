@@ -1,5 +1,5 @@
-const {Query} = require('./resolvers/query');
+const { Query } = require('./resolvers/query')
 
 module.exports = {
-    Query,
-};
+  Query,
+}

@@ -1,20 +1,20 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 import DefaultLayout from '../layout/defaultLayout'
 
 class Landing extends Component {
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props)
+  }
 
-    render() {
-        return (
-            <DefaultLayout>
-                <p>Hello, world!</p>
-            </DefaultLayout>
-        );
-    }
+  render() {
+    return (
+      <DefaultLayout>
+        <p>Hello, world!</p>
+      </DefaultLayout>
+    )
+  }
 }
 
-Landing.propTypes = {};
+Landing.propTypes = {}
 
-export default Landing;
+export default Landing

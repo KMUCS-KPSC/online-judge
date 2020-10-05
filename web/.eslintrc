@@ -1,0 +1,46 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "jquery": true
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "extends": ["eslint:recommended", "eslint-config-prettier", "plugin:react/recommended"],
+  "plugins": ["eslint-plugin-prettier"],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "semi": false
+      }
+    ],
+    "semi": 0,
+    "camelcase": 0,
+    "no-console": "off",
+    "no-plusplus": 0,
+    "no-bitwise": 0,
+    "no-underscore-dangle": 0,
+    "react/prop-types": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/alt-text": 0,
+    "jsx-a11y/label-has-associated-control": 0,
+    "jsx-a11y/label-has-for": 0,
+    "global-require": 0,
+    "react/prefer-stateless-function": 0,
+    "react/no-array-index-key": 0,
+    "no-await-in-loop": 0
+  },
+  "globals": {
+    "gtag": true,
+    "onYouTubeIframeAPIReadyMod": true
+  }
+}
