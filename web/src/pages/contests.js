@@ -6,27 +6,29 @@ import BasicTable from '../components/basicTable'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
-const GET_PROBLEMS_QUERY = gql`
+const GET_CONTESTS_QUERY = gql`
   query {
-    getProblems {
+    getContests {
       id
       name
-      difficulty
-      ac
-      wa
+      first
+      second
+      start
+      end
+      status
     }
   }
 `
 
-class Problems extends Component {
+class Contests extends Component {
   constructor(props) {
     super(props)
 
     const rows = []
 
     this.state = {
-      headers: ['문제번호', '문제이름', '난이도', '정답률'],
-      problems: rows,
+      headers: ['대회이름', '우승', '준우승', '시작', '종료', '상태'],
+      contests: rows,
     }
   }
 
@@ -34,31 +36,29 @@ class Problems extends Component {
     return (
       <DefaultLayout>
         <Query
-          query={GET_PROBLEMS_QUERY}
+          query={GET_CONTESTS_QUERY}
           onCompleted={(data) => {
-            const problems = []
+            const contests = []
 
-            for (let i = 0; i < data.getProblems.length; i++) {
+            for (let i = 0; i < data.getContests.length; i++) {
               let row = {
                 href: '#',
                 row: [
-                  data.getProblems[i].id,
-                  <a key={i} href={`/problem/${data.getProblems[i].id}`}>
-                    {data.getProblems[i].name}
+                  <a key={i} href={`/contest/${data.getContests[i].id}`}>
+                    {data.getContests[i].name}
                   </a>,
-                  data.getProblems[i].difficulty,
-                  (
-                    (data.getProblems[i].ac /
-                      (data.getProblems[i].ac + data.getProblems[i].wa)) *
-                    100
-                  ).toFixed(2) + '%',
+                  data.getContests[i].first,
+                  data.getContests[i].second,
+                  data.getContests[i].start,
+                  data.getContests[i].end,
+                  data.getContests[i].status,
                 ],
               }
-              problems.push(row)
+              contests.push(row)
             }
 
             this.setState({
-              problems: problems,
+              contests: contests,
             })
           }}
         >
@@ -72,10 +72,10 @@ class Problems extends Component {
         <Container>
           <Row xs>
             <div>
-              <p>Problems</p>
+              <p>Contests</p>
               <BasicTable
                 headers={this.state.headers}
-                rows={this.state.problems}
+                rows={this.state.contests}
               />
             </div>
           </Row>
@@ -85,6 +85,6 @@ class Problems extends Component {
   }
 }
 
-Problems.propTypes = {}
+Contests.propTypes = {}
 
-export default Problems
+export default Contests

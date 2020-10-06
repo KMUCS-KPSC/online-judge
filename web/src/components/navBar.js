@@ -21,7 +21,7 @@ class NavBar extends Component {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
                         <Nav.Link href="/problems">문제 목록</Nav.Link>
-                        <Nav.Link href="/contest">대회</Nav.Link>
+                        <Nav.Link href="/contests">대회</Nav.Link>
                         <Nav.Link href="/rank">랭킹</Nav.Link>
                         <Nav.Link href="/discuss">토론</Nav.Link>
                         <NavDropdown title="메뉴" id="basic-nav-dropdown">
