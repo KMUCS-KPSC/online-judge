@@ -32,6 +32,7 @@ const createStore = (force = false) => {
       difficulty: Sequelize.TEXT,
       ac: Sequelize.INTEGER,
       wa: Sequelize.INTEGER,
+      markdown: Sequelize.TEXT,
     },
     {
       sequelize,

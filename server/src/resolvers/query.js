@@ -12,7 +12,20 @@ module.exports.Query = {
         difficulty: problems[i].difficulty,
         ac: problems[i].ac,
         wa: problems[i].wa,
+        markdown: problems[i].markdown,
       })
+    }
+    return ret
+  },
+  getProblem: async (parent, args, context) => {
+    const problem = await context.dataSources.problemsAPI.getProblem(args.id)
+    const ret = {
+      id: problem.id,
+      name: problem.name,
+      difficulty: problem.difficulty,
+      ac: problem.ac,
+      wa: problem.wa,
+      markdown: problem.markdown,
     }
     return ret
   },

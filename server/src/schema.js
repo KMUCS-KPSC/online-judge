@@ -7,6 +7,7 @@ const typeDefs = gql`
     difficulty: String!
     ac: Int!
     wa: Int!
+    markdown: String
   }
   type Contest {
     id: Int!
@@ -20,6 +21,7 @@ const typeDefs = gql`
   type Query {
     helloWorld: Boolean!
     getProblems: [Problem]!
+    getProblem(id: Int!): Problem!
     getContests: [Contest]!
   }
 `

@@ -1,7 +1,7 @@
 const { DataSource } = require('apollo-datasource')
 const { isUndefinedOrNull } = require('../utils')
 
-const problemsAttributes = ['id', 'name', 'difficulty', 'ac', 'wa']
+const problemsAttributes = ['id', 'name', 'difficulty', 'ac', 'wa', 'markdown']
 
 class ProblemsAPI extends DataSource {
   constructor(store) {
@@ -37,6 +37,17 @@ class ProblemsAPI extends DataSource {
       ret.push(problems[i].dataValues)
     }
     return ret
+  }
+
+  async getProblem(id) {
+    if (id === undefined || id === null) {
+      throw new Error('idIsNotPassedMessage')
+    }
+    const problem = await this.store.Problems.findOne({
+      where: { id: id },
+      raw: true,
+    })
+    return problem ? problem : null
   }
 }
 

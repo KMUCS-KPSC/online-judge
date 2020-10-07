@@ -1,4 +1,8 @@
+const fs = require('fs')
+
 const createMockStore = async (store) => {
+  const problem1 = await fs.readFileSync('./problems/problem1.md', 'utf8')
+
   const mockProblems = [
     {
       id: 1,
@@ -6,6 +10,7 @@ const createMockStore = async (store) => {
       difficulty: '최강 난이도',
       ac: 10,
       wa: 100,
+      markdown: problem1,
     },
     {
       id: 2,
@@ -13,6 +18,7 @@ const createMockStore = async (store) => {
       difficulty: '최강 난이도',
       ac: 10,
       wa: 1000,
+      markdown: problem1,
     },
   ]
 
