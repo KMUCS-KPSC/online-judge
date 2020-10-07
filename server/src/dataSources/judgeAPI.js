@@ -53,6 +53,9 @@ class JudgeAPI extends DataSource {
       let collection = db.collection('judgeResults')
       let query = { id }
       let res = await collection.findOne(query)
+      if (res !== null) {
+        await collection.deleteOne(query)
+      }
       console.log(res)
       return res
     } catch (err) {
