@@ -65,8 +65,9 @@ while True:
   compile_out, compile_err = compileCode()
   print(len(compile_out), len(compile_err))
   if len(compile_err):
-    mongo.pushResult('tmp_id', {'type': 'compile_err', 'res': compile_err})
+    mongo.pushResult(q['id'], {'type': 'compile_err', 'res': compile_err})
+    continue
   
   run_out = runCode()
   print(run_out)
-  mongo.pushResult('tmp_id', {'type': 'std_out', 'res': run_out})
+  mongo.pushResult(q['id'], {'type': 'std_out', 'res': run_out})

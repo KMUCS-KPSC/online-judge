@@ -7,6 +7,7 @@ const resolvers = require('./resolvers')
 
 const { ProblemsAPI } = require('./dataSources/problemsAPI')
 const { ContestsAPI } = require('./dataSources/contestsAPI')
+const { JudgeAPI } = require('./dataSources/judgeAPI')
 
 const store = createStore(true)
 
@@ -20,6 +21,7 @@ const server = new ApolloServer({
   dataSources: () => ({
     problemsAPI: new ProblemsAPI(store),
     contestsAPI: new ContestsAPI(store),
+    judgeAPI: new JudgeAPI(store),
   }),
   context,
 })

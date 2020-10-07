@@ -9,6 +9,10 @@ const typeDefs = gql`
     wa: Int!
     markdown: String
   }
+  type RunResult {
+    type: String!
+    res: String!
+  }
   type Contest {
     id: Int!
     name: String!
@@ -20,9 +24,18 @@ const typeDefs = gql`
   }
   type Query {
     helloWorld: Boolean!
+
     getProblems: [Problem]!
     getProblem(id: Int!): Problem!
+
     getContests: [Contest]!
+
+    getRunResult(
+      id: String!
+      problem: Int!
+      lang: String!
+      code: String!
+    ): RunResult!
   }
 `
 
