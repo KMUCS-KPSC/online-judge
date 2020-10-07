@@ -6,6 +6,12 @@ judgeDB = myclient['judge']
 judgeQueue = judgeDB['judgeQueue']
 judgeResults = judgeDB['judgeResults']
 
+def clear():
+  x = judgeQueue.delete_many({})
+  print(x.deleted_count, " documents deleted.")
+  x = judgeResults.delete_many({})
+  print(x.deleted_count, " documents deleted.")
+
 def popQueue():
   ret = judgeQueue.find_one()
   if ret is None:
