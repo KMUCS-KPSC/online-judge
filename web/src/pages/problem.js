@@ -3,8 +3,7 @@ import { gql } from 'apollo-boost'
 import { Query } from 'react-apollo'
 import DefaultLayout from '../layout/defaultLayout'
 import FullHeightLayout from '../layout/fullHeightLayout'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
+import { Container, Row } from 'react-bootstrap'
 import { DefaultFormat, CodingTestFormat } from '../components/problemFormat'
 
 const GET_PROBLEM_QUERY = gql`
@@ -51,7 +50,7 @@ class Problem extends Component {
         </Query>
         {this.props.codingtest ? (
           <FullHeightLayout>
-            <CodingTestFormat problem={this.state.problem} />
+            <CodingTestFormat problems={[this.state.problem]} />
           </FullHeightLayout>
         ) : (
           <DefaultLayout>

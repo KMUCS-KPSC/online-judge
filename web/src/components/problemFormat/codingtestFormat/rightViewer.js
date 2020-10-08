@@ -43,7 +43,6 @@ class RightViewer extends Component {
           style={{
             height: `calc(${this.ratio}% - ${this.state.offset}px)`,
           }}
-          className="border"
         >
           <Card style={{ height: '100%', width: '100%' }}>
             <Card.Header style={{ padding: '0px' }}>
@@ -74,6 +73,7 @@ class RightViewer extends Component {
           </Card>
         </Row>
         <Row
+          className="border"
           draggable={true}
           onDragStart={(event) => {
             console.log('dragStart!!', event.pageY)
@@ -93,10 +93,9 @@ class RightViewer extends Component {
               offset: nextOffset,
             })
           }}
-          style={{ minHeight: `5px`, cursor: 'ns-resize' }}
+          style={{ minHeight: `${this.dragbarSize}px`, cursor: 'ns-resize' }}
         ></Row>
         <Row
-          className="border"
           style={{
             height: `calc(${100 - this.ratio}% + ${this.state.offset}px - ${
               this.dragbarSize
