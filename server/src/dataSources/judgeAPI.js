@@ -13,7 +13,7 @@ class JudgeAPI extends DataSource {
     this.context = config.context
   }
 
-  async pushQueue(id, problem, lang, code) {
+  async pushQueue(id, problem, lang, code, sample) {
     const client = await MongoClient.connect(url, {
       useNewUrlParser: true,
     }).catch((err) => {
@@ -27,7 +27,7 @@ class JudgeAPI extends DataSource {
     try {
       const db = client.db('judge')
       let collection = db.collection('judgeQueue')
-      let query = { id, problem, lang, code }
+      let query = { id, problem, lang, code, sample }
       let res = await collection.insertOne(query)
       console.log(res)
     } catch (err) {
@@ -65,8 +65,8 @@ class JudgeAPI extends DataSource {
     }
   }
 
-  async getResult(id, problem, lang, code) {
-    await this.pushQueue(id, problem, lang, code)
+  async getResult(id, problem, lang, code, sample) {
+    await this.pushQueue(id, problem, lang, code, sample)
 
     let res = null
     while (res === null) {

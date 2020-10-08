@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withApollo } from '@apollo/react-hoc'
 import { gql } from 'apollo-boost'
 
-import { Nav, Card } from 'react-bootstrap'
+import { Nav, Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 
 const GET_RUN_RESULT_QUERY = gql`
   query getRunResult(
@@ -10,10 +10,20 @@ const GET_RUN_RESULT_QUERY = gql`
     $problem: Int!
     $lang: String!
     $code: String!
+    $sample: Boolean!
   ) {
-    getRunResult(id: $id, problem: $problem, lang: $lang, code: $code) {
+    getRunResult(
+      id: $id
+      problem: $problem
+      lang: $lang
+      code: $code
+      sample: $sample
+    ) {
       type
       res
+      runtime
+      in
+      ans
     }
   }
 `
@@ -27,19 +37,82 @@ class ResultViewer extends Component {
     }
   }
 
-  async runQuery(code) {
+  async runQuery(code, submit) {
     console.log(this.props)
     const { data } = await this.props.client.query({
       query: GET_RUN_RESULT_QUERY,
-      variables: { id: 'tmp', problem: 1, lang: 'cpp', code: code },
+      variables: {
+        id: 'tmp',
+        problem: 1,
+        lang: 'cpp',
+        code: code,
+        sample: !submit,
+      },
     })
-    console.log(data.getRunResult)
+    // console.log(data.getRunResult)
 
     this.setState({
-      results: (
-        <Card body>
-          <pre>{data.getRunResult.res}</pre>
+      results: submit ? (
+        <Card>
+          <Card.Body>
+            <Card.Title>정확성 테스트</Card.Title>
+            {data.getRunResult.map((item, index) => (
+              <div key={index}>
+                <small>{`테스트 ${index + 1} `}</small>
+                {item.type === 'ac' && (
+                  <span style={{ color: 'blue' }}>정답입니다!</span>
+                )}
+                {item.type === 'wa' && (
+                  <span style={{ color: 'red' }}>틀렸습니다</span>
+                )}
+                {item.type === 'runtime_err' && (
+                  <span style={{ color: 'red' }}>런타임 에러</span>
+                )}
+                <small>{` (${
+                  Math.round(item.runtime * 1000 * 100) / 100
+                }ms)`}</small>
+                <br />
+              </div>
+            ))}
+          </Card.Body>
         </Card>
+      ) : (
+        data.getRunResult.map((item, index) => (
+          <div key={index}>
+            <Card>
+              <Card.Body>
+                <Card.Title>Test Case {index + 1}</Card.Title>
+                {'입력값'}
+                <blockquote>
+                  <pre>{item.in}</pre>
+                </blockquote>
+                {'정답'}
+                <blockquote>
+                  <pre>{item.ans}</pre>
+                </blockquote>
+                {'출력값'}
+                <blockquote>
+                  <pre>{item.res}</pre>
+                </blockquote>
+                {item.type === 'ac' && (
+                  <span style={{ color: 'blue' }}>정답입니다!</span>
+                )}
+                {item.type === 'wa' && (
+                  <span style={{ color: 'red' }}>틀렸습니다</span>
+                )}
+                {item.type === 'runtime_err' && (
+                  <span style={{ color: 'red' }}>런타임 에러</span>
+                )}
+              </Card.Body>
+              <ListGroup className="list-group-flush">
+                <ListGroupItem>
+                  {`실행시간: ${Math.round(item.runtime * 1000 * 100) / 100}ms`}
+                </ListGroupItem>
+              </ListGroup>
+            </Card>
+            <br />
+          </div>
+        ))
       ),
     })
   }
@@ -54,22 +127,36 @@ class ResultViewer extends Component {
         <Card.Footer style={{ padding: '0px' }}>
           <Nav className="justify-content-end">
             <Nav.Item>
-              <Nav.Link>제출</Nav.Link>
+              <Nav.Link
+                onClick={() => {
+                  this.setState({
+                    results: [],
+                  })
+                  this.runQuery(
+                    this.props.editor.editor &&
+                      this.props.editor.editor.getValue(),
+                    true
+                  )
+                }}
+              >
+                제출
+              </Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link
                 onClick={() => {
+                  this.setState({
+                    results: [],
+                  })
                   this.runQuery(
                     this.props.editor.editor &&
-                      this.props.editor.editor.getValue()
+                      this.props.editor.editor.getValue(),
+                    false
                   )
                 }}
               >
                 실행
               </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link>초기화</Nav.Link>
             </Nav.Item>
           </Nav>
         </Card.Footer>

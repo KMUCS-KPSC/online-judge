@@ -12,6 +12,9 @@ const typeDefs = gql`
   type RunResult {
     type: String!
     res: String!
+    runtime: Float
+    in: String!
+    ans: String!
   }
   type Contest {
     id: Int!
@@ -35,7 +38,8 @@ const typeDefs = gql`
       problem: Int!
       lang: String!
       code: String!
-    ): RunResult!
+      sample: Boolean!
+    ): [RunResult]!
   }
 `
 

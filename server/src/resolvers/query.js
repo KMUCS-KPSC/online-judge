@@ -46,16 +46,23 @@ module.exports.Query = {
     return ret
   },
   getRunResult: async (parent, args, context) => {
-    const { id, problem, lang, code } = args
+    const { id, problem, lang, code, sample } = args
     const judgeResult = await context.dataSources.judgeAPI.getResult(
       id,
       problem,
       lang,
-      code
+      code,
+      sample
     )
-    const ret = {
-      type: judgeResult.result.type,
-      res: judgeResult.result.res,
+    const ret = []
+    for (let i = 0; i < judgeResult.result.length; ++i) {
+      ret.push({
+        type: judgeResult.result[i].type,
+        res: judgeResult.result[i].res,
+        runtime: judgeResult.result[i].runtime,
+        in: judgeResult.result[i].in,
+        ans: judgeResult.result[i].ans,
+      })
     }
     return ret
   },
