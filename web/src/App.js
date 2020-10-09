@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Landing from './pages/landing'
+import CodingTest from './pages/codingTest'
 import Problem from './pages/problem'
 import Problems from './pages/problems'
 import Contests from './pages/contests'
@@ -13,8 +14,8 @@ function App() {
     <Router>
       <Switch>
         <Route
-          path="/test/:id"
-          component={({ match }) => <Problem codingtest={true} match={match} />}
+          path="/codingtest/:id"
+          component={({ match }) => <CodingTest match={match} />}
         />
         <Route path="/problem/:id" component={Problem} />
         <Route path="/problems" component={Problems} />

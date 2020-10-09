@@ -2,6 +2,7 @@ import time
 import subprocess
 import mongo
 import os.path
+import glob
 
 def saveCode(code):
   f = open('./codes/main.cc', 'w')
@@ -67,14 +68,15 @@ def verdict(teamOut, ansPath):
 def getResult(sample=True):
   pathType = 'sample' if sample else 'secret'
   res = []
-  i = 0
-  while True:
-    i += 1
-    inFilePath = './testcase/{}/{}/{}.in'.format(q['problem'], pathType, i)
-    outFilePath = './testcase/{}/{}/{}.out'.format(q['problem'], pathType, i)
 
-    if not os.path.isfile(inFilePath):
-      break
+  inFilePathPattern = './testcase/{}/{}/*.in'.format(q['problem'], pathType)
+  outFilePathPattern = './testcase/{}/{}/*.out'.format(q['problem'], pathType)
+
+  inFiles = glob.glob(inFilePathPattern)
+  outFiles = glob.glob(outFilePathPattern)
+
+  for i in range(len(inFiles)):
+    inFilePath, outFilePath = inFiles[i], outFiles[i]
 
     inputData = open(inFilePath, 'r').read()
 
@@ -128,7 +130,7 @@ while True:
   compile_out, compile_err = compileCode()
   print(len(compile_out), len(compile_err))
   if len(compile_err):
-    mongo.pushResult(q['id'], {'type': 'compile_err', 'res': compile_err})
+    mongo.pushResult(q['id'], [{'type': 'compile_err', 'res': compile_err, 'runtime': 0, 'in': '', 'ans': ''}])
     continue
 
   isSample = q['sample']

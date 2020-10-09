@@ -63,10 +63,24 @@ class RightViewer extends Component {
                 theme="github"
                 name="UNIQUE_ID_OF_DIV"
                 editorProps={{ $blockScrolling: true }}
-                defaultValue={defaultCPP}
+                defaultValue={
+                  this.props.codes[this.props.index]
+                    ? this.props.codes[this.props.index]
+                    : defaultCPP
+                }
+                value={
+                  this.props.codes[this.props.index]
+                    ? this.props.codes[this.props.index]
+                    : defaultCPP
+                }
                 ref={(ref) => {
                   this.editor = ref
-                  console.log(this.editor)
+                  console.log('editor', this.editor)
+                }}
+                onChange={() => {
+                  this.props.codes[
+                    this.props.index
+                  ] = this.editor.editor.getValue()
                 }}
               />
             </Card.Body>
@@ -102,7 +116,7 @@ class RightViewer extends Component {
             }px)`,
           }}
         >
-          <ResultViewer editor={this.editor} result={this.state.results} />
+          <ResultViewer editor={this.editor} problem={this.props.problem} />
         </Row>
       </div>
     )

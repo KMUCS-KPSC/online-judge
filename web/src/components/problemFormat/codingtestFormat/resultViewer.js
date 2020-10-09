@@ -43,19 +43,18 @@ class ResultViewer extends Component {
       query: GET_RUN_RESULT_QUERY,
       variables: {
         id: 'tmp',
-        problem: 1,
+        problem: this.props.problem.id,
         lang: 'cpp',
         code: code,
         sample: !submit,
       },
     })
-    // console.log(data.getRunResult)
 
     this.setState({
       results: submit ? (
         <Card>
           <Card.Body>
-            <Card.Title>정확성 테스트</Card.Title>
+            <Card.Title>채점 결과</Card.Title>
             {data.getRunResult.map((item, index) => (
               <div key={index}>
                 <small>{`테스트 ${index + 1} `}</small>
@@ -82,18 +81,23 @@ class ResultViewer extends Component {
             <Card>
               <Card.Body>
                 <Card.Title>Test Case {index + 1}</Card.Title>
-                {'입력값'}
-                <blockquote>
-                  <pre>{item.in}</pre>
-                </blockquote>
-                {'정답'}
-                <blockquote>
-                  <pre>{item.ans}</pre>
-                </blockquote>
+                {item.type !== 'compile_err' && (
+                  <div>
+                    {'입력값'}
+                    <blockquote>
+                      <pre>{item.in}</pre>
+                    </blockquote>
+                    {'정답'}
+                    <blockquote>
+                      <pre>{item.ans}</pre>
+                    </blockquote>
+                  </div>
+                )}
                 {'출력값'}
                 <blockquote>
                   <pre>{item.res}</pre>
                 </blockquote>
+
                 {item.type === 'ac' && (
                   <span style={{ color: 'blue' }}>정답입니다!</span>
                 )}
@@ -102,6 +106,9 @@ class ResultViewer extends Component {
                 )}
                 {item.type === 'runtime_err' && (
                   <span style={{ color: 'red' }}>런타임 에러</span>
+                )}
+                {item.type === 'compile_err' && (
+                  <span style={{ color: 'red' }}>컴파일 에러</span>
                 )}
               </Card.Body>
               <ListGroup className="list-group-flush">

@@ -8,6 +8,12 @@ class CodingTestFormat extends Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      problemIdx: 0,
+    }
+
+    this.codes = []
+
     this.rightColumn = React.createRef()
   }
 
@@ -17,12 +23,28 @@ class CodingTestFormat extends Component {
         <Card.Header style={{ padding: '10px' }}>
           <Nav variant="tabs" defaultActiveKey="#first" default>
             <Nav.Item>
-              <Nav.Link href="#first">문제 1</Nav.Link>
+              <Nav.Link
+                href="#first"
+                onClick={() => {
+                  this.setState({ problemIdx: 0 })
+                  console.log(this.props.problems)
+                }}
+              >
+                문제 1
+              </Nav.Link>
             </Nav.Item>
             {this.props.problems &&
               this.props.problems.slice(1).map((item, index) => (
                 <Nav.Item key={index}>
-                  <Nav.Link>문제 {index + 1}</Nav.Link>
+                  <Nav.Link
+                    href="#"
+                    onClick={() => {
+                      this.setState({ problemIdx: index + 1 })
+                      console.log(this.props.problems)
+                    }}
+                  >
+                    문제 {index + 2}
+                  </Nav.Link>
                 </Nav.Item>
               ))}
           </Nav>
@@ -41,8 +63,8 @@ class CodingTestFormat extends Component {
                   <div>
                     <MarkdownRender>
                       {this.props.problems &&
-                        this.props.problems[0] &&
-                        this.props.problems[0].markdown}
+                        this.props.problems[this.state.problemIdx] &&
+                        this.props.problems[this.state.problemIdx].markdown}
                     </MarkdownRender>
                   </div>
                 </Row>
@@ -51,7 +73,12 @@ class CodingTestFormat extends Component {
                 className="h-100 d-flex flex-column"
                 ref={(ref) => (this.rightColumn = ref)}
               >
-                <RightViewer rightColumn={this.rightColumn} />
+                <RightViewer
+                  index={this.state.problemIdx}
+                  problem={this.props.problems[this.state.problemIdx]}
+                  codes={this.codes}
+                  rightColumn={this.rightColumn}
+                />
               </Col>
             </Row>
           </Container>

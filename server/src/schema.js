@@ -29,6 +29,7 @@ const typeDefs = gql`
     helloWorld: Boolean!
 
     getProblems: [Problem]!
+    getProblemSet(ids: [Int]!): [Problem]!
     getProblem(id: Int!): Problem!
 
     getContests: [Contest]!
